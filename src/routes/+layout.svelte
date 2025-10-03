@@ -10,8 +10,8 @@
 	<title></title>
 </svelte:head>
 
-<div class="bg-brand-dark overflow-hidden mt-0 h-screen">
-	<div class="box-rounded bg-brand-neutral flex items-center justify-between p-3">
+<div class="bg-brand-dark pt-4 h-screen">
+	<div class="mt-0 box-rounded flex items-center justify-between p-3">
 		<div class="flex items-center space-x-4 ml-3">
 			<a class="hover:underline" href="/">Home</a>
 			<a class="hover:underline" href="/test">Test</a>
@@ -22,7 +22,7 @@
 			<button class="btn" onclick={() => {document.location.href="/signup"}}>Sign Up</button>
 		</div>
 	</div>
-	<div class="box-rounded bg-brand-neutral">
+	<div>
 		{@render children?.()}
 	</div>
 </div>
