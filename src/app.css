@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+    --color-brand-dark: oklch(0.1 0.045 274);
+    --color-brand-neutral: oklch(0.2 0.045 274);
+    --color-brand-light: oklch(0.3 0.045 274);
+    --color-brand-text: oklch(0.96 0.09 274);
+    --color-brand-text-muted: oklch(0.76 0.09 274);
+    --color-brand-highlight: oklch(0.5 0.09 274);
+    --color-brand-border: oklch(0.4 0.09 274);
+    --color-brand-border-muted: oklch(0.3 0.09 274);
+    --color-brand-danger: oklch(0.7 0.09 30);
+    --color-brand-success: oklch(0.7 0.09 160);
+    --color-brand-info: oklch(0.7 0.09 260);
+}
+
+@layer base {
+    * {
+        @apply text-brand-text;
+    }
+    a {
+        @apply text-brand-text hover:underline;
+    }
+    button {
+        @apply rounded-full bg-brand-light py-2 px-5 shadow-md cursor-pointer hover:scale-105 duration-200;
+    }
+    h1 {
+        @apply text-4xl font-bold
+    }
+    h2 {
+        @apply text-2xl font-bold
+    }
+    h3 {
+        @apply text-lg font-bold
+    }
+    h4 {
+        @apply text-base font-bold
+    }
+    h5 {
+        @apply text-sm font-bold
+    }
+    h6 {
+        @apply text-xs font-bold
+    }
+}
+
+@layer components {
+    .box-rounded {
+        @apply bg-white rounded-2xl p-4 m-4;
+    }
+}
