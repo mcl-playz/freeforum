@@ -1,36 +1,61 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-brand-dark: oklch(0.1 0.045 274);
-    --color-brand-neutral: oklch(0.2 0.045 274);
-    --color-brand-light: oklch(0.3 0.045 274);
-    --color-brand-text: oklch(0.96 0.09 274);
-    --color-brand-text-muted: oklch(0.76 0.09 274);
-    --color-brand-highlight: oklch(0.5 0.09 274);
-    --color-brand-border: oklch(0.4 0.09 274);
-    --color-brand-border-muted: oklch(0.3 0.09 274);
-    --color-brand-danger: oklch(0.7 0.09 30);
-    --color-brand-success: oklch(0.7 0.09 160);
-    --color-brand-info: oklch(0.7 0.09 260);
+    --color-brand-dark: oklch(0.1 0.05 274);
+    --color-brand-neutral: oklch(0.15 0.05 274);
+    --color-brand-light: oklch(0.2 0.05 274);
+    --color-brand-text: oklch(0.96 0.1 274);
+    --color-brand-text-muted: oklch(0.76 0.1 274);
+    --color-brand-highlight: oklch(0.5 0.1 274);
+    --color-brand-border: oklch(0.4 0.1 274);
+    --color-brand-border-muted: oklch(0.3 0.1 274);
+    --color-brand-danger: oklch(0.7 0.1 30);
+    --color-brand-success: oklch(0.7 0.1 160);
+    --color-brand-info: oklch(0.7 0.1 260);
 }
 
 @layer base {
-    * {
-        @apply text-brand-text;
-    }
-    a {
-        @apply text-brand-text hover:underline;
-    }
+    * { @apply text-brand-text; }
+    a { @apply text-brand-text hover:underline; }
     button {
         @apply rounded-full py-2 px-5 shadow-md cursor-pointer bg-brand-text text-brand-dark hover:bg-brand-text-muted duration-300;
     }
     button.muted {
         @apply bg-brand-border text-brand-text hover:bg-brand-text-muted hover:text-brand-dark;
     }
-    input {
-        @apply rounded-full bg-brand-light py-2 px-5 shadow-xl border border-brand-border border-t-brand-highlight;
+    form {
+        @apply self-center m-8 space-y-6 w-full;
     }
-    label { @apply font-semibold }
+    form > section {
+        @apply space-y-1;
+    }
+    input {
+        @apply outline-none rounded-full w-full bg-brand-light py-2 px-5 shadow-xl border border-brand-border border-t-brand-highlight duration-300;
+    }
+    input:focus {
+        @apply border-brand-text-muted shadow-sm shadow-brand-highlight;
+    }
+    input[type="checkbox"] {
+        @apply flex-shrink-0 p-0 appearance-none w-6 h-6 rounded-lg shadow-none
+        bg-brand-light border border-brand-border checked:bg-brand-text-muted checked:border-none
+        cursor-pointer duration-300;
+        position: relative;
+    }
+    input[type="checkbox"]:checked::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 7px;
+        height: 12px;
+        border-right: 3px solid var(--color-brand-dark);
+        border-bottom: 3px solid var(--color-brand-dark);
+        transform: translate(-50%, -60%) rotate(45deg);
+    }
+    label {
+        @apply block mb-2 text-base font-semibold tracking-wide text-brand-text-muted;
+    }
     h1 { @apply text-4xl font-bold }
     h2 { @apply text-2xl font-bold }
     h3 { @apply text-lg font-bold }
@@ -43,7 +68,7 @@
     .box-rounded {
         @apply bg-brand-neutral rounded-2xl p-4 m-4
         border border-brand-border border-t-brand-highlight
-        
+        shadow-lg shadow-brand-highlight/10
         ;
     }
 }

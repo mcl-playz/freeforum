@@ -5,8 +5,7 @@ export const users = pgTable('users', {
     id: serial('id').primaryKey(), 
     username: varchar('username', { length: 16 }).unique().notNull(), 
     email: text("email").unique().notNull(), 
-    password: varchar("password", { length: 60 }).notNull(), 
-    birthDate: date("birth_date"),
+    password: varchar("password", { length: 60 }).notNull(),
 	
     role: text("role", { enum: ["administrator", "moderator", "member"] }).notNull().default('member'), 
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
@@ -19,11 +18,20 @@ export const categories = pgTable("categories", {
     description: text("description"),
 });
 
-// --- Threads Table ---
-export const threads = pgTable("threads", {
+export const subForums = pgTable("sub_forums", {
     id: serial("id").primaryKey(),
-    name: text("name").notNull(),
+    name: text("name").unique().notNull(),
     description: text("description"),
+
+    categoryId: integer('category_id').references(() => categories.id, { onDelete: "cascade" }).notNull(), 
+});
+
+// --- Threads Table ---
+export const topics = pgTable("topics", {
+    id: serial("id").primaryKey(),
+    topic: text("topic").notNull(),
+    description: text("description"),
+
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(), 
     
     creatorId: integer('creator_id').references(() => users.id).notNull(), 
@@ -34,8 +42,9 @@ export const threads = pgTable("threads", {
 export const posts = pgTable("posts", {
     id: serial("id").primaryKey(),
     message: text("message").notNull(),
+
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 
     posterId: integer('poster_id').references(() => users.id).notNull(),
-    threadId: integer('thread_id').references(() => threads.id, { onDelete: "cascade" }).notNull(),
+    threadId: integer('thread_id').references(() => topics.id, { onDelete: "cascade" }).notNull(),
 });

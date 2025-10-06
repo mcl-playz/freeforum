@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="bg-brand-dark pt-4 h-screen">
-	<div class="mt-0 box-rounded flex items-center justify-between p-3 relative">
+	<div class="mt-0 box-rounded rounded-full flex items-center justify-between p-3 relative">
 		<div class="flex items-center space-x-4 ml-3">
 			<a class="hover:underline" href="/">Home</a>
 			<a class="hover:underline" href="/test">Test</a>
