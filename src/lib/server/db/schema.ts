@@ -1,5 +1,13 @@
 import { pgTable, text, varchar, date, serial, integer, timestamp } from 'drizzle-orm/pg-core';
 
+// --- Forum Settings Table ---
+// Singleton table to store forum-wide settings
+export const forumSettings = pgTable("forum_settings", {
+    id: integer('id').primaryKey().default(1),
+    forumName: text('forum_name').notNull().default('FreeForum'),
+    siteHue: integer('site_hue').notNull().default(274), 
+});
+
 // --- Users Table ---
 export const users = pgTable('users', {
     id: serial('id').primaryKey(), 
